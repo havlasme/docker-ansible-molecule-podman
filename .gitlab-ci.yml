@@ -1,0 +1,21 @@
+variables:
+  IMAGE_REGISTRY: docker.io
+  IMAGE_NAME: havlasme/ansible-molecule-podman
+  TAG_LATEST: $IMAGE_REGISTRY/$IMAGE_NAME:latest
+  DOCKER_TLS_CERTDIR: ''
+
+build:
+  image: docker:stable
+  stage: build
+  interruptible: true
+  only:
+  - main
+  services:
+  - docker:dind
+  script:
+  - env
+  - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD $IMAGE_REGISTRY
+  - docker info
+  - docker pull $TAG_LATEST || true
+  - docker build --cache-from $TAG_LATEST -t $TAG_LATEST .
+  - docker push $TAG_LATEST
