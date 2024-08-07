@@ -15,12 +15,11 @@ How to Use
 To use this image in GitLab CI/CD scenario, customize the following `gitlab-ci.yml` snippet.
 
 ```yaml title="gitlab-ci.yml"
-variables:
-  ANSIBLE_FORCE_COLOR: 'true'
-
 molecule test:
   stage: test
   image: havlasme/ansible-molecule-podman:latest
+  variables:
+    ANSIBLE_FORCE_COLOR: 'true'
   before_script:
   - echo -e '[storage]\ndriver = "overlay"\nrunroot = "/var/obj/podman/storage"\ngraphroot = "/var/obj/podman/storage"\n[storage.options.overlay]\nmount_program = "/usr/bin/fuse-overlayfs"\nmountopt = "nodev,metacopy=on"' > /etc/containers/storage.conf
   - echo -e '[containers]\nnetns="host"\nuserns="host"\nipcns="host"\nutsns="host"\ncgroupns="host"\ncgroups="disabled"\n[engine]\ncgroup_manager = "cgroupfs"\nevents_logger = "file"' > /etc/containers/containers.conf
@@ -29,6 +28,7 @@ molecule test:
   - ansible --version
   - molecule --version
   script:
+  - ansible-lint .
   - molecule test --all
 ```
 
