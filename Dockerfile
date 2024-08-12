@@ -9,4 +9,4 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install ansible ansible-lint molecule molecule-plugins[podman] yamllint
+RUN pip3 install ansible ansible-lint molecule molecule-plugins[podman] yamllint yq
