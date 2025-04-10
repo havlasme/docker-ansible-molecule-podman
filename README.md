@@ -5,14 +5,14 @@ Ansible Molecule GitLab CI/CD Image
 [![Apache-2.0 license][dockerhub-image]][dockerhub-link]
 [![Apache-2.0 license][license-image]][license-link]
 
-[GitLab CI/CD](https://docs.gitlab.com/ee/ci/) image intended to run [Ansible](https://www.ansible.com/) [Molecule](https://ansible.readthedocs.io/projects/molecule/) orchestrated tests with [Podman](https://podman.io/) provisioning.
+[GitLab CI/CD](https://docs.gitlab.com/ee/ci/) image intended to run [Ansible](https://www.ansible.com/) [Molecule](https://ansible.readthedocs.io/projects/molecule/) orchestrated tests using [Podman](https://podman.io/) provisioning.
 
-This image is built automatically on each commit to the `main` branch, and published on the [Docker Hub](https://hub.docker.com/) as [`havlasme/ansible-molecule-podman:latest`](https://hub.docker.com/repository/docker/havlasme/ansible-molecule-podman/general).
+This image is automatically built on each commit to the `main` branch and published on the [Docker Hub](https://hub.docker.com/) as [`havlasme/ansible-molecule-podman:latest`](https://hub.docker.com/repository/docker/havlasme/ansible-molecule-podman/general).
 
 How to Use
 ----------
 
-To use this image in GitLab CI/CD scenario, customize the following `gitlab-ci.yml` snippet.
+To use this image in a GitLab CI/CD scenario, customize the following `gitlab-ci.yml` snippet.
 
 ```yaml title="gitlab-ci.yml"
 molecule test:
@@ -35,7 +35,7 @@ molecule test:
 How to Build
 ------------
 
-To build the image locally simply run:
+To build the image locally, simply run:
 
 ```shell
 make build
